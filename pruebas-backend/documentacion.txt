@@ -1,0 +1,38 @@
+
+
+//
+// Alta de usuario por login y password
+//
+
+Tabla en BBD: academy_usuario
+
+Datos solicitados:
+Correo electronico - max 120 caracteres -> Campo en BBDD: correo_electronicio - JSON email:correo
+Usuario - max 16 caracteres -> Campo en BBDD: username - JSON username:usuario
+password - max 16 caracteres -> Campo en BBDD: password - JSON password:password
+
+Generado automaticamente
+id - max 30 caracteres -> Campo en BBDD: id
+created - Fecha de creación del registro
+
+El campo id es la clave primaria de la Tabla
+
+Peticion de alta:
+
+Tipo POST
+Peticion /altausuario
+Pasar un json, como sigue:
+
+correo:correo
+usuario:usuario
+password:password
+
+Respuesta del servidor
+
+Un Json con este formato:
+
+exito:true/false  -> si la respuesta es true, se devuelven los valores que han sido guardados
+id:id
+correo:correo
+usuario:usuario
+password:password
