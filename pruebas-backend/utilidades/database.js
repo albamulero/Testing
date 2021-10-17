@@ -67,7 +67,7 @@ const anadir_registros = async (args, callback) => {
 
 
 
-
+/*
 parametro = {accion: 'INSERT',
             tabla: 'academy_usuarios',
             campos : ['id', 'correo_electronico', 'username', 'password'],
@@ -78,3 +78,9 @@ anadir_registros(parametro, function(data){
     console.log(data)
 
 })
+
+*/
+
+module.exports = {
+    'anadir_registros': anadir_registros
+}

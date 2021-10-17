@@ -1,9 +1,21 @@
+const { makeid, validarEmail } = require('../utilidades/util')
+const {anadir_registros} = require('../utilidades/database') 
+
+//---------
+// Test del archivo de la carpeta utilidades database.js
+//--------------------------------------------
+
+
+//-------- Añade un registro al la base de datos.....
+
+
+
+
+
 //-----------
 // Test del archivo de archivo util.js del directorio utilidades
 //-------------------
 
-const { makeid, validarEmail } = require('../utilidades/util')
-//const util = require('../utilidades/util')
 
 describe("Makeid genera un valor afanumerido de 10", function() {
 

@@ -5,6 +5,7 @@
 
 const utilidades = require('./utilidades/util')
 const express = require('express')
+const database = require('./utilidades/database')
 
 
 
@@ -45,12 +46,25 @@ app.post('/altaUsuario', function(req, res, next){
 
     console.log(utilidades.validarEmail(req.body.email))
 
+    // Crear un id
+    let id = utilidades.makeid()
+    console.log(id)
+
+    // Crear la solicitud para añadir registros a la base de datos
+    let data = {accion: 'INSERT',
+            tabla: 'academy_usuarios',
+            campos : ['id', 'correo_electronico', 'username', 'password'],
+            data : [id, req.body.email, req.body.username, req.body.password]
+            }
+
+    database.anadir_registros(data, function(valor){
+    
+      console.log(JSON.stringify(valor));
+      return  res.json(valor)
+
+    })
 
 
-  //crudPromesas.altaUsuario(email, password, id, empresa, function(test){
-
-    //console.log(JSON.stringify(test));
-    return  res.status(200)
 
   })
 
