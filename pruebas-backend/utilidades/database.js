@@ -41,7 +41,7 @@ const anadir_registros = async (args, callback) => {
 
     // Crear la conexion a la 
 
-   const conexion = mysql.createConnection(db.database)
+    const conexion = mysql.createConnection(db.database)
     const query = util.promisify(conexion.query).bind(conexion) 
 
     let success = false
@@ -75,6 +75,62 @@ const anadir_registros = async (args, callback) => {
 }
 
 
+const borrar_registros = async (args, callback) => {
+
+    // Datos que tenemos que leer de JSON que se pasa
+    // campo : "data"
+    // where : "data"
+    // database : "database" -> no en esta version
+    // tabla: "tabla"
+    // Ejemplo {'accion': 'DELETE', tabla: 'academy_usuarios', campos : ['id'], data ['06_idid999iid']}
+
+    let database = ''
+    let tabla = args.tabla
+
+    // Construccion de la sentencia SQL
+// DELETE FROM table_name WHERE condition;
+    let sql = 'DELETE FROM ' + tabla + ' WHERE ' + args.campos[0] + ' = "' + args.data[0] + '"'
+
+     // Crear la conexion a la 
+
+    const conexion = mysql.createConnection(db.database)
+    const query = util.promisify(conexion.query).bind(conexion) 
+
+    let success = false
+    let message = ''
+
+    try {
+
+        //console.log(sql)
+        let result = await query(sql)
+
+        success = true
+        mensaje = 'Lineas afectadas ' + result.affectedRows
+
+
+
+    }catch (err) {
+        success = false
+        mensaje = err.sqlMessage
+
+
+
+    }finally{
+
+        conexion.end()
+
+        let devolucion = {'success': success, 'mensaje':mensaje}
+
+        callback(devolucion)
+    }
+
+
+    
+
+
+}
+
+
 /*
 
 parametro = {accion: 'INSERT',
@@ -87,11 +143,28 @@ anadir_registros(parametro, function(data){
     console.log('Linea 88' + data.success + " || " + data.mensaje )
 
 })
+
+
+
+
+parametro = {accion: 'BORRAR',
+            tabla: 'academy_usuarios',
+            campos : ['id'],
+            data : ['06_idid999iid']
+            }
+
+borrar_registros(parametro, function(data){
+    console.log('Linea 88' + data.success + ' || ' + data.mensaje )
+
+})
+
 */
 
 
 
 
+
 module.exports = {
-    'anadir_registros': anadir_registros
+    'anadir_registros': anadir_registros,
+    'borrar_registros': borrar_registros
 }
