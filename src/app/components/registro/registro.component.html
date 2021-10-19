@@ -4,51 +4,51 @@
 
         <h1 class="subhearder">Registro</h1>
 
-        <form class="mid-form" #registroForm="ngForm">
+        <form class="mid-form" #registroForm="ngForm" (ngSubmit)="onSubmit()">
 
             <div class="form-group">
 
                 <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" id="nombre" required>
+                <input type="text" name="nombre" id="nombre" #nombre="ngModel" [(ngModel)]="user.nombre" required>
 
             </div>
 
             <div class="form-group">
 
                 <label for="apellido">Apellido</label>
-                <input type="text" name="apellido" id="apellido" required>
+                <input type="text" name="apellido" id="apellido" #apellido="ngModel" [(ngModel)]="user.apellido" required>
                 
             </div>
             
             <div class="form-group">
 
                 <label for="email">Email</label>
-                <input type="email" name="email" id="correo_electronico" required>
+                <input type="email" name="email" id="correo_electronico" #email="ngModel" [(ngModel)]="user.email"required>
                 
             </div>
 
             <div class="form-group">
 
                 <label for="password1">Contraseña</label>
-                <input type="password" name="password1" id="password1" required>
+                <input type="password" name="password1" id="password1" #password1="ngModel" [(ngModel)]="user.password1" required>
                 
             </div>
 
             <div class="form-group">
 
                 <label for="password2">Repetir contraseña</label>
-                <input type="password" name="password2" id="password2" required>
+                <input type="password" name="password2" id="password2" #password2="ngModel" [(ngModel)]="user.password2" required>
                 
             </div>
 
             <div class="form-group radiobuttons">
 
-                <input type="radio" name="edad" value="-16"> menor a 16
-                <input type="radio" name="edad" value="+16"> mayor a 16
+                <input type="radio" name="edad" value="-16" #edad="ngModel" [(ngModel)]="user.edad"> menor a 16
+                <input type="radio" name="edad" value="+16" #edad="ngModel" [(ngModel)]="user.edad"> mayor a 16
 
             </div>
 
-            <input type="button" value="Registrarse" class="btn" id="btn-registro">
+            <input type="submit" value="Registrarse" class="btn" id="btn-registro">
 
         </form>
     </section>
