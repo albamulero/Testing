@@ -28,8 +28,9 @@ export class RegistroComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("funcion onSubmit");
     console.log(this.user);
-    
+    /* if(this.user.password1.value != this.user.password2.value){
+      console.log("Las contraseñas no cuinciden")
+    } */
   }
 }

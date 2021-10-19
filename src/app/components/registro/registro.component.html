@@ -38,6 +38,8 @@
 
                 <label for="password2">Repetir contraseña</label>
                 <input type="password" name="password2" id="password2" #password2="ngModel" [(ngModel)]="user.password2" required>
+
+                <small *ngIf="password1.value != password2.value">Las contraseñas no cuinciden</small>
                 
             </div>
 
