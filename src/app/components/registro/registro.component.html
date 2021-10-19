@@ -1,0 +1,57 @@
+<div class="center">
+
+    <section id="content">
+
+        <h1 class="subhearder">Registro</h1>
+
+        <form class="mid-form" #registroForm="ngForm">
+
+            <div class="form-group">
+
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre" required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="apellido">Apellido</label>
+                <input type="text" name="apellido" id="apellido" required>
+                
+            </div>
+            
+            <div class="form-group">
+
+                <label for="email">Email</label>
+                <input type="email" name="email" id="correo_electronico" required>
+                
+            </div>
+
+            <div class="form-group">
+
+                <label for="password1">Contraseña</label>
+                <input type="password" name="password1" id="password1" required>
+                
+            </div>
+
+            <div class="form-group">
+
+                <label for="password2">Repetir contraseña</label>
+                <input type="password" name="password2" id="password2" required>
+                
+            </div>
+
+            <div class="form-group radiobuttons">
+
+                <input type="radio" name="edad" value="-16"> menor a 16
+                <input type="radio" name="edad" value="+16"> mayor a 16
+
+            </div>
+
+            <input type="button" value="Registrarse" class="btn" id="btn-registro">
+
+        </form>
+    </section>
+</div>
+
+

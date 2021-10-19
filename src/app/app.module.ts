@@ -1,5 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+// Importamos el modulo http del paquete http Angular
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +15,7 @@ import { AreaJavascriptComponent } from './components/area-javascript/area-javas
 import { AreaHtmlComponent } from './components/area-html/area-html.component';
 import { AreaCssComponent } from './components/area-css/area-css.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { RegistroComponent } from './components/registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -19,10 +24,13 @@ import { SliderComponent } from './components/slider/slider.component';
     AreaJavascriptComponent,
     AreaHtmlComponent,
     AreaCssComponent,
-    SliderComponent
+    SliderComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
     AppRoutingModule,
     routing
   ],
