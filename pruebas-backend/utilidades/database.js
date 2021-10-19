@@ -44,15 +44,21 @@ const anadir_registros = async (args, callback) => {
    const conexion = mysql.createConnection(db.database)
     const query = util.promisify(conexion.query).bind(conexion) 
 
+    let success = false
+    let message = ''
+
     try {
 
-        console.log(sql)
+        //console.log(sql)
         let result = await query(sql)
-        mensaje = result.sqlMessage
+
+        success = true
+        mensaje = 'Lineas afectadas ' + result.affectedRows
 
 
 
     }catch (err) {
+        success = false
         mensaje = err.sqlMessage
 
 
@@ -60,26 +66,31 @@ const anadir_registros = async (args, callback) => {
     }finally{
 
         conexion.end()
-        callback(mensaje)
+
+        let devolucion = {'success': success, 'mensaje':mensaje}
+
+        callback(devolucion)
     }
 
 }
 
 
-
 /*
+
 parametro = {accion: 'INSERT',
             tabla: 'academy_usuarios',
             campos : ['id', 'correo_electronico', 'username', 'password'],
-            data : ['ididiid', 'cmulero83@icloud.com', 'cmulero83', '1234']
+            data : ['06_idid999iid', '06_cmulero83@icldoud.com', 'cmulero83', '1234']
             }
 
 anadir_registros(parametro, function(data){
-    console.log(data)
+    console.log('Linea 88' + data.success + " || " + data.mensaje )
 
 })
-
 */
+
+
+
 
 module.exports = {
     'anadir_registros': anadir_registros
