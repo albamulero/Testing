@@ -13,6 +13,7 @@ export class RegistroComponent implements OnInit {
   constructor() { 
 
     this.user = {
+
       nombre: '',
       apellido: '',
       email: '',
@@ -27,10 +28,18 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    console.log(this.user);
-    /* if(this.user.password1.value != this.user.password2.value){
-      console.log("Las contraseñas no cuinciden")
-    } */
+  registrarse() {
+
+    /* Primero comprobamos que la contraseña sean iguales */
+    
+    if(this.user.password1 != this.user.password2) {
+
+      alert("La contraseña es incorrecta");
+
+    }else {
+
+      alert("Correcto");
+      
+    }
   }
 }
