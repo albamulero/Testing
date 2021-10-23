@@ -36,3 +36,18 @@ id:id
 correo:correo
 usuario:usuario
 password:password
+
+
+//
+// Alta de lecciones teoricas
+// La idea son pasos - 1.- Tabla primaria. Crear codigo de la leccion que debe de tener alguna logica, ejemplo mod_1_lec_2, y ponemos un de la leccion. Ejemplo 'Variables'
+// 2.- Otra tabla secundaria, comparte el codigo de la leccion ejemplo mod_1_lec_2, tiene otro campo que contiene el orden de las lecciones seccion: 1 - 2, esto indicara
+// en que orden se devuelven la distintas partes de la leccion, luego otro campo con el subtitulo, por ejemplo: Variables alfanumericas, y luego ya el texto completo de la lección
+// 
+// Ejemplo json de creación de la lección: {id:'mod_1_lec_2', title:"Variables"}
+// Ejemplo json de creación de partes de la leccion {id:mod_1_lec:2, seccion: 1, sutitulo: "Variables numericas", texto: 'Las variables numericas son aquillas que utiliza....\n'}
+//
+//
+
+
+
