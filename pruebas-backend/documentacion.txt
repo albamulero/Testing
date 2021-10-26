@@ -23,7 +23,7 @@ Tipo POST
 Peticion /altausuario
 Pasar un json, como sigue:
 
-correo:correo
+email:correo
 usuario:usuario
 password:password
 
