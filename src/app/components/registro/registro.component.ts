@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as jQuery from 'jquery';
 
 @Component({
   selector: 'app-registro',
@@ -8,7 +9,6 @@ import { Component, OnInit } from '@angular/core';
 export class RegistroComponent implements OnInit {
 
   public user: any;
-  public campo: string;
 
   constructor() { 
 
@@ -16,13 +16,14 @@ export class RegistroComponent implements OnInit {
 
       nombre: '',
       apellido: '',
+      username: '',
       email: '',
-      password1: '',
+      password: '',
       password2: '',
       edad: ''
 
     }
-
+    
   }
 
   ngOnInit(): void {
@@ -30,16 +31,36 @@ export class RegistroComponent implements OnInit {
 
   registrarse() {
 
-    /* Primero comprobamos que la contraseña sean iguales */
+    /* Primero comprobamos que las contraseñas sean iguales */
     
-    if(this.user.password1 != this.user.password2) {
+    if(this.user.password != this.user.password2) {
 
-      alert("La contraseña es incorrecta");
+      console.log("La contraseña es incorrecta - linea 42");
 
-    }else {
+    } else {
 
-      alert("Correcto");
+      console.log("La contraseña es correcta - linea 46");
+
+      const data = JSON.stringify(this.user )
+      
+      jQuery.ajax({
+
+        url: 'http://localhost:3000/altausuario',
+        data:data,
+        type: 'POST',
+        dataType:'json'
+
+      }).then(function (response) {
+                
+        console.log(response);
+                    
+      }).catch(function (err){
+              
+        console.log("hubo un error");
+
+      })
       
     }
-  }
+  } 
 }
+
