@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~10.0.5",
     "@angular/platform-browser-dynamic": "~10.0.5",
     "@angular/router": "~10.0.5",
+    "bcrypt": "^5.0.1",
     "email-validator": "^2.0.4",
     "express": "^4.17.1",
     "mysql": "^2.18.1",

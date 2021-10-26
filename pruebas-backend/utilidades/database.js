@@ -3,7 +3,7 @@ const mysql = require('mysql')
 const util = require('util')
 
 
-const anadir_registros = async (args, callback) => {
+const anadir_registros = async (args) => {
 
     // Datos que tenemos que leer de JSON que se pasa
     // Accion, INSERT, UPDATE, DELETED
@@ -49,7 +49,7 @@ const anadir_registros = async (args, callback) => {
 
     try {
 
-        //console.log(sql)
+        console.log('Sentencia SQL que vamos a ejecutar...: ' + sql)
         let result = await query(sql)
 
         success = true
@@ -69,13 +69,13 @@ const anadir_registros = async (args, callback) => {
 
         let devolucion = {'success': success, 'mensaje':mensaje}
 
-        callback(devolucion)
+        return devolucion
     }
 
 }
 
 
-const borrar_registros = async (args, callback) => {
+const borrar_registros = async (args) => {
 
     // Datos que tenemos que leer de JSON que se pasa
     // campo : "data"
@@ -121,7 +121,7 @@ const borrar_registros = async (args, callback) => {
 
         let devolucion = {'success': success, 'mensaje':mensaje}
 
-        callback(devolucion)
+        return devolucion
     }
 
 
