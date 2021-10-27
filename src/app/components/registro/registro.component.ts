@@ -41,12 +41,23 @@ export class RegistroComponent implements OnInit {
 
       console.log("La contraseña es correcta - linea 46");
 
-      const data = JSON.stringify(this.user )
+      const data = {
+        "nombre" : `${this.user.nombre}`,
+        "apellido": `${this.user.apellido}`,
+        "username": `${this.user.username}`,
+        "email": `${this.user.email}`,
+        "password" : `${this.user.password}`
+        }
+
+
+
+      console.log('data')
+      console.log(data)
       
       jQuery.ajax({
 
         url: 'http://localhost:3000/altausuario',
-        data:data,
+        data: data,
         type: 'POST',
         dataType:'json'
 
@@ -56,7 +67,7 @@ export class RegistroComponent implements OnInit {
                     
       }).catch(function (err){
               
-        console.log("hubo un error");
+        console.log(err);
 
       })
       

@@ -5,12 +5,13 @@
 
 const utilidades = require('./utilidades/util')
 const express = require('express')
+const cors = require('cors')
 const usuario_crud = require('./usuarios/crud')
 
 
 
 const app = express()
-
+app.use(cors())   // Habilitarmos CORS
 
 const PORT = 3000
  
@@ -34,6 +35,8 @@ app.get('/', function (req, res) {
 // --- ALTA USUARIO ---
 
 app.post('/altaUsuario', async function(req, res, next){
+
+  console.log(req.body)
 
     // Vamos a comprobar primero que nos llega la información
     if (req.body.email != null  & req.body.username != null & req.body.password != null) {
