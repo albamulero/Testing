@@ -81,7 +81,7 @@ app.post('/altaUsuario', async function(req, res, next){
 
 app.post('/login', async function(req, res){
 
-  console.log(req.body)
+  console.log(req.body) //kdkk
 
   // comprobar que nos estan pasando los parametros...
   if (req.body.email != "" & req.body.email != ""){
