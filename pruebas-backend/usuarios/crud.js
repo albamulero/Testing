@@ -10,6 +10,7 @@ const database = require('../utilidades/database')
 
 // Configuración del sistema de encryptacion
 const bcrypt = require('bcrypt');
+const { ɵɵresolveBody } = require('@angular/core');
 const saltRounds = 15;
 
 /////////////////////////
@@ -17,9 +18,6 @@ const saltRounds = 15;
 ///////////////////////
 
 async function altaUsuario (email, username, password){
-
-    let message
-    
 
     // Comprobamos que tenemos todos los datos
 
@@ -46,7 +44,7 @@ async function altaUsuario (email, username, password){
     
         // Crear un id
         let id = utilidades.makeid()
-        console.log(id)
+        //console.log(id)
 
         // Crear la instruccion para alta....
 
@@ -77,7 +75,11 @@ async function altaUsuario (email, username, password){
 
 async function bajaUsuario (email, username, password){
 
-  null
+    // Comprobar que tenemos valores validos
+
+
+  
+    return {"success":false, "message":"Funcion en desarrollo"} 
 
 }
 
@@ -86,9 +88,53 @@ async function bajaUsuario (email, username, password){
 // CRUD LOGIN USUARIOS //
 ///////////////////////
 
-async function login (email, username, password){
+async function login (email, password){
 
-  null
+
+    // Vamos a busar el usuario en la base de datos
+    // El sistemanos devolvera 3 datos
+    // password: que lo comprabaremos con el que nos pasa desencriptandolo
+    // id: con el que crearemos la sesion
+    // email: para una ultima confirmación
+
+
+    let data = {accion: 'SELECT',
+        tabla: 'academy_usuarios',
+        campos : ['correo_electronico'],
+        data : [email]
+        }
+
+    let valor = await database.buscar_registros(data)
+
+    // Vamos a comprobar si el resultado es positivo, en caso de serlo vamos a comprobar que todos los datos son correctos
+    // y luego comparamos la clave
+
+    if(valor.success){
+
+        console.log(valor)
+
+        // Comprobar el correo devuelto sea el que le pasamos y el password
+        if (valor.resultado[0].correo_electronico == email & await bcrypt.compare(password, valor.resultado[0].password)){
+
+
+            resultado = true
+
+        } else{
+            resultado = false
+        }
+    
+
+
+    }else{
+
+        resultado = false
+        
+    }
+
+
+
+
+   return resultado
 
 }
 

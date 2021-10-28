@@ -1,6 +1,7 @@
 const db = require('./config_db')
 const mysql = require('mysql')
 const util = require('util')
+const { consoleTestResultHandler } = require('tslint/lib/test')
 
 
 const anadir_registros = async (args) => {
@@ -131,6 +132,70 @@ const borrar_registros = async (args) => {
 }
 
 
+//
+// Raliza una busqueda en la base de datos y devulve los datos en un array
+//
+
+const buscar_registros = async (args) => {
+
+    let tabla = args.tabla
+
+    // Construccion de la sentencia SQL
+    sql = 'SELECT * FROM ' + tabla + ' WHERE '
+
+    // Leemos todos los campos y ponemos la variable a comparar
+    for (let n=0; n < args.campos.length; n++){
+        sql = sql + args.campos[n] +  ' = "' +  args.data[n] + '"' 
+    }
+
+    // Crear la conexion a la 
+
+    const conexion = mysql.createConnection(db.database)
+    const query = util.promisify(conexion.query).bind(conexion) 
+
+    let success = false
+    let result = ''
+
+    try{
+
+        result = await query(sql)
+
+        if (result == 0){
+            success = false
+            message = 'No existe el usuario'
+        }else{
+
+            success = true 
+            message = 'Usuario encontrado'
+
+        }
+
+
+    }catch (err){
+
+        success = false
+        mensaje = err.sqlMessage
+
+
+
+    }finally{
+
+
+        conexion.end()
+
+        let devolucion = {'success': success, 'mensaje':message, 'resultado' : result}
+
+        return devolucion
+
+
+    }
+
+
+
+
+
+}
+
 /*
 
 parametro = {accion: 'INSERT',
@@ -166,5 +231,6 @@ borrar_registros(parametro, function(data){
 
 module.exports = {
     'anadir_registros': anadir_registros,
-    'borrar_registros': borrar_registros
+    'borrar_registros': borrar_registros,
+    'buscar_registros': buscar_registros
 }
