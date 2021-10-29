@@ -16,6 +16,7 @@ import { AreaHtmlComponent } from './components/area-html/area-html.component';
 import { AreaCssComponent } from './components/area-css/area-css.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { RegistroComponent } from './components/registro/registro.component';
     AreaHtmlComponent,
     AreaCssComponent,
     SliderComponent,
-    RegistroComponent
+    RegistroComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,27 @@
+<div class="center">
+
+    <section id="content">
+
+        <h1 class="subhearder">Login</h1>
+
+        <form class="mid-form" #registroForm="ngForm" (ngSubmit)="login()">
+            
+            <div class="form-group">
+
+                <label for="email">Correo electronico</label>
+                <input type="email" name="email" id="email" #email="ngModel" [(ngModel)]="entrada_usuario.email"required>
+                
+            </div>
+
+            <div class="form-group">
+
+                <label for="password">Contraseña</label>
+                <input type="password" name="password" id="password" #password1="ngModel" [(ngModel)]="entrada_usuario.password" required>
+                
+            </div>
+
+            <input type="submit" value="Entar" class="btn" >
+
+        </form>
+    </section>
+</div>
