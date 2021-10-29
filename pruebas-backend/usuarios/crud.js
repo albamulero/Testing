@@ -54,10 +54,12 @@ async function altaUsuario (email, username, password){
             data : [id, email, username, hash]
             }
 
-        let valor = database.anadir_registros(data)
-        let result = await valor
+        let valor = await database.anadir_registros(data)
 
-        return result
+        console.log(valor)
+        
+
+        return valor
 
 
 
