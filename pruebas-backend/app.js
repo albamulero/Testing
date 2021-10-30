@@ -31,12 +31,6 @@ app.use(session({
 }))
 
 
-
-
-
- 
-
-
 app.use(express.static('public'))   // Ruta para paginas estaticas
  
 app.listen(3000, (err)=>{
@@ -99,6 +93,60 @@ app.post('/login', async function(req, res){
 
 
 })
+
+
+
+/**
+ Incluimos el ruteador para las lecciones
+ Debemos de recibir un json con la siguiente estrucutar
+
+  *@param { seccion: "HTML", *leccion: 1 }
+  *!El dato obligatorio es la sección, si se omite la lección se devolvera la lista del nivel HTML si se pasa la seccion se devolver los datos de la leccion 1
+
+*/
+
+app.get('/leccion', async function(req, res){
+
+
+
+    let success = false
+    let message = ''
+
+    // Comprobar si el primer parametro esta llegando
+    if (req.body.seccion == '' || req.body.seccion == null ){
+        success = false
+        message = "Error en el paso de parametros"
+
+    }else{
+
+        /**
+
+          ** Seleccionar el cambino que vamos a seguir
+          
+
+        */
+
+      if(req.body.leccion == '' | req.body.leccion == null){
+          message = "Se devolvera todos los titulos de la seccion " + req.body.seccion
+      }else{
+          message = "Se devolvera la seccion : " + req.body.seccion + " y los subtitulos de la leccion " + req.body.leccion
+      }
+
+
+    }
+
+    //console.log(req)
+
+    console.log(req.body.seccion)
+    console.log(req.body.leccion), 
+
+
+   res.json({succes:success, message: message})
+
+
+
+  })
+
 
 
 
