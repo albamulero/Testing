@@ -2,18 +2,15 @@
 // Ruteador de las lecciones
 //
 
+'use strict'
+
 const express=require("express")
 const router=express.Router()
 
+const database = require('../utilidades/database')
 
-
-router.get('/lecciones', async function(req, res){
-
-  console.log(req.body) 
-
-
-
-})
+// Importacion de archivos propios
+const lecciones_crud = require('../lecciones/crud')  
 
 
 /**
@@ -27,41 +24,27 @@ router.get('/lecciones', async function(req, res){
 
 router.get('/leccion', async function(req, res){
 
-
-
     let success = false
     let message = ''
+    let valor
 
     // Comprobar si el primer parametro esta llegando
     if (req.body.seccion == '' || req.body.seccion == null ){
+
+        // Construir mensajes de devolucion
         success = false
         message = "Error en el paso de parametros"
 
     }else{
 
-        /**
-
-          ** Seleccionar el camino que vamos a seguir
-          
-
-        */
-
-      if(req.body.leccion == '' | req.body.leccion == null){
-          message = "Se devolvera todos los titulos de la seccion " + req.body.seccion
-      }else{
-          message = "Se devolvera la seccion : " + req.body.seccion + " y los subtitulos de la leccion " + req.body.leccion
-      }
-
+      valor = await lecciones_crud.ver_seccion_leccion(req.body.seccion, req.body.leccion)
+  
+  console.log('41')  
+    console.log(valor)
 
     }
 
-    //console.log(req)
-
-    console.log(req.body.seccion)
-    console.log(req.body.leccion), 
-
-
-   res.json({succes:success, message: message})
+   res.json(valor)
 
 
 

@@ -6,7 +6,6 @@ const express=require("express")
 const router=express.Router()
 
 // Importacion de archivos propios
-//const utilidades = require('../utilidades/util')
 const usuario_crud = require('../usuarios/crud')  
 
 
@@ -56,8 +55,6 @@ router.post('/login', async function(req, res){
 
 
 })
-
-
 
 module.exports = router
 

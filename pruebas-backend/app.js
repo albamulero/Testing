@@ -12,12 +12,8 @@ const cookieParser = require('cookie-parser') // Nos permite configurar cookies 
 const session = require('express-session');  // Nos permite tener sessiones...
 
 // importar los archivos del ruteador
-const user = require('./router/user')
-const lecciones = require('./router/lecciones')
-
-// Importacion de archivos propios
-const utilidades = require('./utilidades/util')
-const usuario_crud = require('./usuarios/crud')   // Maneja el crud de los usuarios
+const user = require('./router/user')   // Maneja todos lo referente  los usuaruos
+const lecciones = require('./router/lecciones')   // Maneja todo lo referente a las lecciones
 
 const PORT = 3000  // Puerto por donde vamos a ejecutar el servidor
 
@@ -39,8 +35,9 @@ app.use(session({
 app.use(express.static('public'))   // Ruta para paginas estaticas
 
 // Manejo de rutas request
-app.use("/", lecciones)
 app.use("/", user)
+app.use("/", lecciones)
+
  
 app.listen(3000, (err)=>{
     if (err){ 
