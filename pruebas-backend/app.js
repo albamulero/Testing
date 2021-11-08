@@ -13,7 +13,7 @@ const session = require('express-session');  // Nos permite tener sessiones...
 
 // importar los archivos del ruteador
 const user = require('./router/user')   // Maneja todos lo referente  los usuaruos
-const lecciones = require('./router/lecciones')   // Maneja todo lo referente a las lecciones
+const lecciones = require('./router/cursos')   // Maneja todo lo referente a las lecciones
 
 const PORT = 3000  // Puerto por donde vamos a ejecutar el servidor
 

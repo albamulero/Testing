@@ -13,7 +13,7 @@ const usuario_crud = require('../usuarios/crud')
 
 router.post('/altaUsuario', async function(req, res, next){
 
-  console.log(req.body)
+  //console.log(req.body)
 
     // Vamos a comprobar primero que nos llega la información
     if (req.body.email != ""  & req.body.username != "" & req.body.password != "") {

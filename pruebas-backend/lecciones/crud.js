@@ -16,22 +16,18 @@ const util = require('../utilidades/util')
 */
 
 
-async function ver_seccion_leccion(seccion, leccion){
+async function lista_cursos(){
 
     let success = false
     let message = ''
     let data, datos_bd
 
 
-    // Comprobar si tenemos seccion
-    if (seccion != null || seccion != ''){
+    data = {accion: 'SELECT',
+    tabla: 'curso_cursos',
+    campos: ''
+    }
 
-
-    let data = {accion: 'SELECT',
-        tabla: 'academy_teoria_01',
-        campos : ['seccion'],
-        data : [seccion]
-        }
 
     let valor = await database.buscar_registros(data)
 
@@ -46,7 +42,7 @@ async function ver_seccion_leccion(seccion, leccion){
                 console.log(valor.resultado)
 
                 // Vamos ordenar el JSON
-                util.ordenarJSON(valor.resultado, 'leccion', 'asc') // En desarrollo
+                //util.ordenarJSON(valor.resultado, 'leccion', 'asc') // En desarrollo
                 
 
         }else{
@@ -54,19 +50,44 @@ async function ver_seccion_leccion(seccion, leccion){
             message = 'Valores no econtrados'
         }
 
-
-    }else{
-        success = false
-        message = 'Error paso de parametros'
-    }
-
-
-
     return {sucess:success, message:message, data: datos_bd}
 
 }
 
 
+//
+// Permite añadir nuevos cursos
+// Recibe dos parametros (titulo y descripción)
+//
+async function anadir_cursos( title, descripcion){
+
+    let success = false
+    let message = ''
+    let data, datos_bd
+
+
+    data = {accion: 'INSERT',
+            tabla: 'curso_cursos',
+            campos : ['curso_title', 'curso_descripcion'],
+            data : [title, descripcion]
+            }
+
+        let valor = await database.anadir_registros(data)
+
+        console.log(valor)
+        
+
+        return valor
+
+
+
+    
+
+
+}
+
+
 module.exports = {
-    'ver_seccion_leccion': ver_seccion_leccion
+    'lista_cursos': lista_cursos,
+    'anadir_cursos': anadir_cursos
 }
