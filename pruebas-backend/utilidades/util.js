@@ -29,9 +29,30 @@ function validarEmail(valor) {
 
 }
 
+// Estaf uncion ordena un json siguiendo los siguientes parametros
+// data : objeto json
+// key : campo por el que se ordena
+// orden : 'asc' - 'desc'
+
+function ordenarJSON(data, key, orden) {
+    return data.sort(function (a, b) {
+        var x = a[key],
+        y = b[key];
+
+        if (orden === 'asc') {
+            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+        }
+
+        if (orden === 'desc') {
+            return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+        }
+    });
+}
+
 
 module.exports = {
     'makeid': makeid,
-    'validarEmail':validarEmail
+    'validarEmail': validarEmail,
+    'ordenarJSON' : ordenarJSON
 }
 

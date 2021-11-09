@@ -1,10 +1,7 @@
 
+'use strict'
 
-const util = require('util')
-const mysql = require('mysql')   // Cargar el modulo de manejo de la base de datos...
 const utilidades = require('../utilidades/util')  // Utilidades
-
-
 const database = require('../utilidades/database')
 
 
@@ -98,6 +95,8 @@ async function login (email, password){
     // password: que lo comprabaremos con el que nos pasa desencriptandolo
     // id: con el que crearemos la sesion
     // email: para una ultima confirmación
+
+    let resultado
 
 
     let data = {accion: 'SELECT',

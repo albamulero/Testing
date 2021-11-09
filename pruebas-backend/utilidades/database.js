@@ -14,7 +14,7 @@ const anadir_registros = async (args) => {
     // tabla: "tabla"
 
     let database = ''
-    let tabla = 'academy_usuarios'
+    let tabla = args.tabla
 
     // Construccion de la sentencia SQL
 
@@ -140,12 +140,42 @@ const buscar_registros = async (args) => {
 
     let tabla = args.tabla
 
-    // Construccion de la sentencia SQL
-    sql = 'SELECT * FROM ' + tabla + ' WHERE '
+    console.log("buscar_registros linea 143")
+    console.log(args.campos.length)
+
+
+
+    // Vamos a ver si tenemos campos, si no los tenemos tenemos hacemos un select para que devuelva todo
+    if(args.campos.length != 0){
+
+
+        // Construccion de la sentencia SQL
+        sql = 'SELECT * FROM ' + tabla + ' WHERE '
+
 
     // Leemos todos los campos y ponemos la variable a comparar
-    for (let n=0; n < args.campos.length; n++){
-        sql = sql + args.campos[n] +  ' = "' +  args.data[n] + '"' 
+        for (let n=0; n < args.campos.length; n++){
+
+            if (n>0){sql = sql + ' AND '}  // Añade AND para mas de un valor de la consulta
+
+
+            if (typeof(args.data[n]) == 'string'){
+
+                sql = sql + args.campos[n] +  ' = "' +  args.data[n] + '"'
+    
+            }else if(typeof(args.data[n]) == 'number'){
+
+                sql = sql + args.campos[n] +  ' = ' +  args.data[n] 
+
+            }
+
+        }
+
+    }else{
+
+        // Construccion de la sentencia SQL
+        sql = 'SELECT * FROM ' + tabla
+
     }
 
     // Crear la conexion a la 
@@ -196,34 +226,7 @@ const buscar_registros = async (args) => {
 
 }
 
-/*
 
-parametro = {accion: 'INSERT',
-            tabla: 'academy_usuarios',
-            campos : ['id', 'correo_electronico', 'username', 'password'],
-            data : ['06_idid999iid', '06_cmulero83@icldoud.com', 'cmulero83', '1234']
-            }
-
-anadir_registros(parametro, function(data){
-    console.log('Linea 88' + data.success + " || " + data.mensaje )
-
-})
-
-
-
-
-parametro = {accion: 'BORRAR',
-            tabla: 'academy_usuarios',
-            campos : ['id'],
-            data : ['06_idid999iid']
-            }
-
-borrar_registros(parametro, function(data){
-    console.log('Linea 88' + data.success + ' || ' + data.mensaje )
-
-})
-
-*/
 
 
 
