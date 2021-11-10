@@ -10,6 +10,7 @@ export class AreaJavascriptComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
