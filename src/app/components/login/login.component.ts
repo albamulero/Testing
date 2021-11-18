@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Login } from '../../models/login'
 import { LoginService } from '../../service/login.service'
 
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
 
-    private _loginService: LoginService
+    private router:Router,
+    private _loginService:LoginService
 
   ) { }
 
@@ -35,9 +37,12 @@ export class LoginComponent implements OnInit {
         if (data == false) {
 
           alert("Contraseña incorrecta, vuelve a intentarlo")
-          
+
+        } else {
+
+          this.router.navigate(['area-cursos'])
         }
-        
+
       }
     )
   }

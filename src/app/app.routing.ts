@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router'
 
 // Importar componentes
 
-import { AreaPrincipalComponent } from '../app/components/area-principal/area-principal.component'
+import { AreaCursosComponent } from '../app/components/area-cursos/area-cursos.component'
 import { AreaJavascriptComponent } from '../app/components/area-javascript/area-javascript.component'
 import { AreaHtmlComponent } from '../app/components/area-html/area-html.component'
 import { AreaCssComponent } from '../app/components/area-css/area-css.component'
@@ -17,7 +17,7 @@ import { LoginComponent } from './components/login/login.component'
 
 const appRoutes: Routes = [
 
-    { path: 'area-principal', component: AreaPrincipalComponent },
+    { path: 'area-cursos', component: AreaCursosComponent },
     { path: 'area-javascript', component: AreaJavascriptComponent },
     { path: 'area-html', component: AreaHtmlComponent },
     { path: 'area-css', component: AreaCssComponent },
