@@ -31,6 +31,12 @@ export class LoginComponent implements OnInit {
       data => {
 
         console.log(data);
+
+        if (data == false) {
+
+          alert("Contraseña incorrecta, vuelve a intentarlo")
+          
+        }
         
       }
     )
