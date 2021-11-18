@@ -1,30 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Registro } from '../models/registro'
+import { Login } from '../models/login'
 import { Global } from './global'
 
 @Injectable()
-export class RegistroService {
+export class LoginService {
 
-    public url: string;
+    public url: string
 
     constructor(
 
         private _http: HttpClient
-    
-    ) { 
+
+    ) {
 
         this.url = Global.url
+
     }
 
-    addRegistro(user:Registro):Observable<any> {
+    addLogin(login:Login):Observable<any> {
 
         const headers = {'content-type':'application/json'}
-        const body = JSON.stringify(user)
+        const body = JSON.stringify(login)
         console.log("Body: ", body);
         
-        return this._http.post(this.url + 'altaUsuario', body, {'headers': headers})
+        return this._http.post(this.url + 'login', body, {'headers': headers})
     }
 
 }

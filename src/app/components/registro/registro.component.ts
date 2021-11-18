@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { data } from 'jquery';
 import { Registro } from '../../models/registro';
 import { RegistroService } from '../../service/registro.service'
 
@@ -13,7 +12,7 @@ export class RegistroComponent implements OnInit {
 
   public url: string;
 
-  // El modelo va vacio por defecto
+  // Aqui guardaremos los datos del formulario
   user = new Registro('', '', '', '', '', '', '')
 
   constructor(
@@ -29,7 +28,7 @@ export class RegistroComponent implements OnInit {
 
     if (this.user.password != this.user.repit_password) {
 
-      alert("Contraseña incorrect, vuelve a intentarlo")
+      alert("Contraseña incorrecta, vuelve a intentarlo")
 
     } else {
 

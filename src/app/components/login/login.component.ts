@@ -1,60 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import * as jQuery from 'jquery';
+import { Login } from '../../models/login'
+import { LoginService } from '../../service/login.service'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
 
-  public entrada_usuario: any;
+  public url: string
 
-  constructor() { 
+  // Aqui guardaremos los datos del formulario
+  login = new Login('', '')
 
-    /* Sacamos los datos del formulario */
+  constructor(
 
-    this.entrada_usuario = {
+    private _loginService: LoginService
 
-      email: '',
-      password: ''
-
-    }
-  }
+  ) { }
 
   ngOnInit(): void {
   }
 
-  login() {
+  entrada_principal() {
 
-    /* Creamos el data */
+    this._loginService.addLogin(this.login).subscribe(
 
-    const data = {
+      data => {
 
-      "email": `${this.entrada_usuario.email}`,
-      "password" : `${this.entrada_usuario.password}`
-      
-    }
-
-    /* Hacemos la peticion ajax, para comprobar que el usaurio este en la DB */
-
-    jQuery.ajax({
-
-      url: 'http://localhost:3000/login',
-      data: data,
-      type: 'POST',
-      dataType:'json'
-
-    }).then(function (response) {
-                
-      console.log(response);
-                  
-    }).catch(function (err){
-              
-      console.log(err);
-
-    })
-
+        console.log(data);
+        
+      }
+    )
   }
+
 }
 
