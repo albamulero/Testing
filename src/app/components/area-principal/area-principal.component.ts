@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as jQuery from 'jquery';
+import { Global } from 'src/app/service/global'
 
 @Component({
   selector: 'app-area-principal',
@@ -8,18 +9,24 @@ import * as jQuery from 'jquery';
 })
 export class AreaPrincipalComponent implements OnInit {
 
-  constructor() { }
+  public url: string;
+
+  constructor() { 
+
+    this.url = Global.url
+  }
 
   ngOnInit(): void {
   }
 
   listado_cursos() {
 
+    const div = document.createElement('div')
+
     console.log("Funcion ejercicios JS")
     
     jQuery.ajax({
       
-      cache: false,
       url: "http://localhost:3000/lista_cursos"
   
     }).then(function(response) {
@@ -28,7 +35,7 @@ export class AreaPrincipalComponent implements OnInit {
 
       if(response.sucess == true) {
 
-        console.log("Los cursos disponibles son estos: ", response);
+        console.log("Los cursos disponibles son estos: ", response.data);
 
         /* Recoremos los cursos */
       
@@ -36,7 +43,15 @@ export class AreaPrincipalComponent implements OnInit {
 
           console.log(response.data[i].curso_title);
 
+          /* Pintamos los cursos en botones */
+
+          const button = document.createElement('button')
+          button.innerText = response.data[i].curso_title
+          div.appendChild(button) 
+
         }
+
+        document.body.appendChild(div)
         
       }else {
 

@@ -15,19 +15,31 @@
                 <label for="nombre">Nombre</label>
                 <input type="text" name="nombre" id="nombre" #nombre="ngModel" [(ngModel)]="user.nombre" required>
 
+                <small *ngIf="!nombre.valid && nombre.required">
+                    Campo obligatorio
+                </small>
+
             </div>
 
             <div class="form-group">
 
                 <label for="apellido">Apellido</label>
                 <input type="text" name="apellido" id="apellido" #apellido="ngModel" [(ngModel)]="user.apellido" required>
+
+                <small *ngIf="!apellido.valid && apellido.touched">
+                    Campo obligatorio
+                </small>
                 
             </div>
 
             <div class="form-group">
 
                 <label for="username">Nombre de usuario</label>
-                <input type="text" name="username" id="username" #apellido="ngModel" [(ngModel)]="user.username" required>
+                <input type="text" name="username" id="username" #username="ngModel" [(ngModel)]="user.username" required>
+
+                <small *ngIf="!username.valid && username.touched">
+                    Campo obligatorio
+                </small>
                 
             </div>
             
@@ -35,20 +47,32 @@
 
                 <label for="email">Correo electronico</label>
                 <input type="email" name="email" id="email" #email="ngModel" [(ngModel)]="user.email"required>
+
+                <small *ngIf="!email.valid && email.touched">
+                    Campo obligatorio
+                </small>
                 
             </div>
 
             <div class="form-group">
 
                 <label for="password">Contraseña</label>
-                <input type="password" name="password" id="password" #password1="ngModel" [(ngModel)]="user.password" required>
+                <input type="password" name="password" id="password" #password="ngModel" [(ngModel)]="user.password" required>
+
+                <small *ngIf="!password.valid && password.touched">
+                    Campo obligatorio
+                </small>
                 
             </div>
 
             <div class="form-group">
 
-                <label for="password2">Repetir contraseña</label>
-                <input type="password" name="password2" id="password2" #password2="ngModel" [(ngModel)]="user.password2" required>
+                <label for="repit_password">Repetir contraseña</label>
+                <input type="password" name="repit_password" id="repit_password" #repit_password="ngModel" [(ngModel)]="user.repit_password" required>
+
+                <small *ngIf="!repit_password.valid && repit_password.touched">
+                    Campo obligatorio
+                </small>
                 
             </div>
 
@@ -57,9 +81,13 @@
                 <input type="radio" name="edad" value="-16" #edad="ngModel" [(ngModel)]="user.edad"> menor a 16
                 <input type="radio" name="edad" value="+16" #edad="ngModel" [(ngModel)]="user.edad"> mayor a 16
 
+                <small *ngIf="!nombre.valid && nombre.touched">
+                    Campo obligatorio
+                </small>
+
             </div>
 
-            <input type="submit" value="Registrarse" class="btn" >
+            <input type="submit" value="Registrarse" class="btn" [disabled]="registroForm.invalid" >
 
         </form>
     </section>

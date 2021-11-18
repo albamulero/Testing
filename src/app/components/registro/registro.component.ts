@@ -1,80 +1,51 @@
 import { Component, OnInit } from '@angular/core';
-import * as jQuery from 'jquery';
+import { data } from 'jquery';
+import { Registro } from '../../models/registro';
+import { RegistroService } from '../../service/registro.service'
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css']
+  styleUrls: ['./registro.component.css'],
+  providers: [RegistroService]
 })
 export class RegistroComponent implements OnInit {
 
-  public user: any;
+  public url: string;
 
-  constructor() { 
+  // El modelo va vacio por defecto
+  user = new Registro('', '', '', '', '', '', '')
 
-    /* Sacamos los datos del formulario */
+  constructor(
 
-    this.user = {
+    private _registroService: RegistroService
 
-      nombre: '',
-      apellido: '',
-      username: '',
-      email: '',
-      password: '',
-      password2: '',
-      edad: ''
-
-    }
-    
-  }
+  ) { }
 
   ngOnInit(): void {
   }
 
   registrarse() {
 
-    /* Primero comprobamos que las contraseñas sean iguales */
-    
-    if(this.user.password != this.user.password2) {
+    if (this.user.password != this.user.repit_password) {
 
-      console.log("La contraseña es incorrecta - linea 42");
+      alert("Contraseña incorrect, vuelve a intentarlo")
 
     } else {
 
-      console.log("La contraseña es correcta - linea 46");
+      console.log("El formulario fue enviado : ", this.user)
 
-      /* Creamos el data */
+      this._registroService.addRegistro(this.user).subscribe(
 
-      const data = {
+        data => {
 
-        "nombre" : `${this.user.nombre}`,
-        "apellido": `${this.user.apellido}`,
-        "username": `${this.user.username}`,
-        "email": `${this.user.email}`,
-        "password" : `${this.user.password}`
+          console.log(data);
 
-      }
-      
-      /* HAcemos la peticion ajax, para dar de al el usuario */
+        }
+      )
 
-      jQuery.ajax({
-
-        url: 'http://localhost:3000/altausuario',
-        data: data,
-        type: 'POST',
-        dataType:'json'
-
-      }).then(function (response) {
-                
-        console.log(response);
-                    
-      }).catch(function (err){
-              
-        console.log(err);
-
-      })
-      
     }
-  } 
+  }
+  
 }
 
