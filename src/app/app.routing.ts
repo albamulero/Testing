@@ -10,6 +10,7 @@ import { AreaJavascriptComponent } from '../app/components/area-javascript/area-
 import { AreaHtmlComponent } from '../app/components/area-html/area-html.component'
 import { AreaCssComponent } from '../app/components/area-css/area-css.component'
 import { RegistroComponent } from './components/registro/registro.component'
+import { LoginComponent } from './components/login/login.component'
 
 
 // Array de rutas
@@ -20,7 +21,8 @@ const appRoutes: Routes = [
     { path: 'area-javascript', component: AreaJavascriptComponent },
     { path: 'area-html', component: AreaHtmlComponent },
     { path: 'area-css', component: AreaCssComponent },
-    { path: 'registro', component: RegistroComponent }
+    { path: 'registro', component: RegistroComponent },
+    { path: 'login', component: LoginComponent }
 ]
 
 

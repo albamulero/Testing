@@ -12,6 +12,8 @@ export class RegistroComponent implements OnInit {
 
   constructor() { 
 
+    /* Sacamos los datos del formulario */
+
     this.user = {
 
       nombre: '',
@@ -41,19 +43,20 @@ export class RegistroComponent implements OnInit {
 
       console.log("La contraseña es correcta - linea 46");
 
+      /* Creamos el data */
+
       const data = {
+
         "nombre" : `${this.user.nombre}`,
         "apellido": `${this.user.apellido}`,
         "username": `${this.user.username}`,
         "email": `${this.user.email}`,
         "password" : `${this.user.password}`
-        }
 
-
-
-      console.log('data')
-      console.log(data)
+      }
       
+      /* HAcemos la peticion ajax, para dar de al el usuario */
+
       jQuery.ajax({
 
         url: 'http://localhost:3000/altausuario',
