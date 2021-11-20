@@ -16,8 +16,6 @@ const saltRounds = 15;
 
 router.post('/altaUsuario', async function(req, res, next){
 
-  //console.log(req.body)
-
     // Vamos a comprobar primero que nos llega la información
     if (req.body.email != ""  & req.body.username != "" & req.body.password != "") {
 
@@ -27,13 +25,13 @@ router.post('/altaUsuario', async function(req, res, next){
 
       try{
 
-        let valor = await User.create({
+        await User.create({
             correo_electronico: req.body.email,
             username: req.body.username,
             password: hash
           })
 
-        es.json({'success':true, 'mensaje':'Usuario creado correctamente'})
+        res.json({'success':true, 'mensaje':'Usuario creado correctamente'})
 
       }
       catch(e){
@@ -58,9 +56,6 @@ router.get('/login', async function(req, res){
 
   // comprobar que nos estan pasando los parametros...
   if (req.body.email != "" & req.body.email != ""){
-
-    
-    // Contraseña encriptada que tenemos que buscar
 
 
     let valor = await User.findOne({where: {correo_electronico: req.body.email}})
