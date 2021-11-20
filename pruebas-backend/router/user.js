@@ -25,6 +25,7 @@ router.post('/altaUsuario', async function(req, res, next){
       //Encriptamos la contraseña...
         const hash = bcrypt.hashSync(req.body.password, saltRounds);
 
+      try{
 
         let valor = await User.create({
             correo_electronico: req.body.email,
@@ -32,7 +33,13 @@ router.post('/altaUsuario', async function(req, res, next){
             password: hash
           })
 
-        res.send(valor)
+        es.json({'success':true, 'mensaje':'Usuario creado correctamente'})
+
+      }
+      catch(e){
+        
+        res.json({'success':false, 'mensaje':'No se pudo crear el usuario'})
+      }      
 
 
     }else{
