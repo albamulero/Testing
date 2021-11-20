@@ -59,6 +59,7 @@ async function lista_cursos(){
 // Permite añadir nuevos cursos
 // Recibe dos parametros (titulo y descripción)
 //
+
 async function anadir_cursos( title, descripcion){
 
     let success = false
@@ -87,7 +88,41 @@ async function anadir_cursos( title, descripcion){
 }
 
 
+//
+// Permite añadir nuevos cursos
+// Recibe dos parametros (titulo y descripción)
+//
+
+async function anadir_temas( posicion, title, descripcion, id_curso){
+
+    let success = false
+    let message = ''
+    let data, datos_bd
+
+
+    data = {accion: 'INSERT',
+            tabla: 'curso_temas',
+            campos : ['tema_orden', 'tema_title', 'tema_descripcion', 'id_curso'],
+            data : [posicion, title, descripcion, id_curso]
+            }
+
+        let valor = await database.anadir_registros(data)
+
+        console.log(valor)
+        
+
+        return valor
+
+}
+
+
+
+
+
+
 module.exports = {
     'lista_cursos': lista_cursos,
-    'anadir_cursos': anadir_cursos
+    'anadir_cursos': anadir_cursos,
+    'anadir_temas' : anadir_temas
+
 }

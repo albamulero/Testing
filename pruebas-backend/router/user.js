@@ -5,9 +5,12 @@
 const express=require("express")
 const router=express.Router()
 
-// Importacion de archivos propios
-const usuario_crud = require('../usuarios/crud')  
+// Importar el modelo
+const User = require('../database/models/User')  // Importamos el modelo
 
+// Configuración del sistema de encryptacion
+const bcrypt = require('bcrypt');
+const saltRounds = 15;
 
 // --- ALTA USUARIO ---
 
@@ -18,10 +21,19 @@ router.post('/altaUsuario', async function(req, res, next){
     // Vamos a comprobar primero que nos llega la información
     if (req.body.email != ""  & req.body.username != "" & req.body.password != "") {
 
-            // Pasar datos al CRUD
-         let valor = await usuario_crud.altaUsuario(req.body.email, req.body.username, req.body.password)
+  
+      //Encriptamos la contraseña...
+        const hash = bcrypt.hashSync(req.body.password, saltRounds);
 
-        res.json(valor)
+
+        let valor = await User.create({
+            correo_electronico: req.body.email,
+            username: req.body.username,
+            password: hash
+          })
+
+        res.send(valor)
+
 
     }else{
         // Responder que faltan datos en la peticion
@@ -35,16 +47,31 @@ router.post('/altaUsuario', async function(req, res, next){
 
 // -- LOGIN ---
 
-router.post('/login', async function(req, res){
-
-  console.log(req.body) 
+router.get('/login', async function(req, res){
 
   // comprobar que nos estan pasando los parametros...
   if (req.body.email != "" & req.body.email != ""){
 
-    let valor = await usuario_crud.login(req.body.email, req.body.password)
+    
+    // Contraseña encriptada que tenemos que buscar
 
-    res.json(valor)
+
+    let valor = await User.findOne({where: {correo_electronico: req.body.email}})
+
+    if (valor == null){
+      res.json({'success':false, 'mensaje':'No se encontro el usuario'})
+    }else{
+
+     // Comprobamos que la conraseña que nos viene es la correcta
+      if (await bcrypt.compare(req.body.password, valor.password)){
+
+          res.json({'success':true, 'mensaje':'Usuario encontrado'})
+      }else{
+
+          res.json({'success':false, 'mensaje':'Contraseña erronea'})
+          }
+      
+    }
 
   }else{
 

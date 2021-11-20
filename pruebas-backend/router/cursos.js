@@ -65,4 +65,32 @@ router.get('/anadir_cursos', async function(req, res){
 
 })
 
+
+
+/**
+
+  Crear nuevo titulo y leccion y leccion (numero, posicion al devolver el array)
+
+
+
+*/
+
+router.get('/anadir_temas', async function(req, res){
+
+      // Vamos a comprobar primero que nos llega la información
+    if (req.body.posicion != "" & req.body.title != "" & req.body.descripcion != "" & req.body.id_curso != "") {
+
+            // Pasar datos al CRUD
+         let valor = await lecciones_crud.anadir_temas(req.body.posicion, req.body.title, req.body.descripcion, req.body.id_curso)
+
+        res.json(valor)
+
+    }else{
+        // Responder que faltan datos en la peticion
+        res.json({'success':false, 'mensaje':'Error en el envio de parametros'})
+
+    }
+
+})
+
 module.exports = router
