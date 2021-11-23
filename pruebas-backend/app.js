@@ -11,9 +11,12 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser') // Nos permite configurar cookies dentro de nuestro servidor
 const session = require('express-session');  // Nos permite tener sessiones...
 
+const sequelize = require('./database/db')    // Conexión para sequalize
+
 // importar los archivos del ruteador
 const user = require('./router/user')   // Maneja todos lo referente  los usuaruos
-const lecciones = require('./router/cursos')   // Maneja todo lo referente a las lecciones
+const lecciones = require('./router/cursos')   // Maneja todo lo referente a los cursos
+const temas = require('./router/temas')  // Maneja todo lo referente a los temas
 
 const PORT = 3000  // Puerto por donde vamos a ejecutar el servidor
 
@@ -37,6 +40,7 @@ app.use(express.static('public'))   // Ruta para paginas estaticas
 // Manejo de rutas request
 app.use("/", user)
 app.use("/", lecciones)
+app.use("/", temas)
 
  
 app.listen(3000, (err)=>{
@@ -44,6 +48,22 @@ app.listen(3000, (err)=>{
         console.log('Error al levantar el servidor')
     }else{
         console.log('Servidor levantado en el puerto :', PORT)
+
+
+     // Conectarse al a base de datos
+    // Si usamos authenticate(), sequalize no va a crear las tablas automaticametne
+    // Si usamos sync({force:false}), sequalize va a crear automaticamente las tablas
+    // Si usamos sync({force:trye}), sequalize hace un DROP TABLES
+
+    sequelize.sync({force:false}).then(()=> {
+        console.log("Conexion correcta a la BBDD")
+    }).catch(error => {
+            console.log("Error en la conexion a la base de datos")
+        }
+    
+    )
+    
+
     }
 })
 

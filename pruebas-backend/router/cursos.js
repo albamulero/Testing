@@ -7,7 +7,11 @@
 const express=require("express")
 const router=express.Router()
 
-const database = require('../utilidades/database')
+// Importar el modelo
+const Cursos = require('../database/models/cursos')  // Importamos el modelo
+
+
+//const database = require('../utilidades/database')
 
 // Importacion de archivos propios
 const lecciones_crud = require('../lecciones/crud')  
@@ -25,16 +29,15 @@ router.get('/lista_cursos', async function(req, res){
 
     let success = false
     let message = ''
-    let valor
 
-   
+    try{
+        let valor = await Cursos.findAll()
+        res.send(valor)
+        }
 
-    valor = await lecciones_crud.lista_cursos(req.body.seccion)
-  
-    console.log('41')  
-    console.log(valor)
-
-    res.json(valor)
+    catch(e){
+          res.send(e)
+        }
 
   })
 
@@ -52,10 +55,20 @@ router.get('/anadir_cursos', async function(req, res){
       // Vamos a comprobar primero que nos llega la información
     if (req.body.title != "" & req.body.descripcion != "") {
 
-            // Pasar datos al CRUD
-         let valor = await lecciones_crud.anadir_cursos(req.body.title, req.body.descripcion)
+      try{
 
-        res.json(valor)
+        await Cursos.create({
+            curso_title: req.body.title,
+            curso_descripcion: req.body.descripcion
+          })
+
+        res.json({'success':true, 'mensaje':'Curso creado correctamente'})
+
+      }
+      catch(e){
+        
+        res.json({'success':false, 'mensaje':'No se pudo crear el curso'})
+      } 
 
     }else{
         // Responder que faltan datos en la peticion
@@ -64,5 +77,10 @@ router.get('/anadir_cursos', async function(req, res){
     }
 
 })
+
+
+
+
+
 
 module.exports = router
