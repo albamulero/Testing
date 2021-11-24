@@ -55,7 +55,7 @@ app.listen(3000, (err)=>{
     // Si usamos sync({force:false}), sequalize va a crear automaticamente las tablas
     // Si usamos sync({force:trye}), sequalize hace un DROP TABLES
 
-    sequelize.sync({force:false}).then(()=> {
+    sequelize.sync({ alter: true }).then(()=> {
         console.log("Conexion correcta a la BBDD")
     }).catch(error => {
             console.log("Error en la conexion a la base de datos")

@@ -52,7 +52,7 @@ router.post('/altaUsuario', async function(req, res, next){
 
 // -- LOGIN ---
 
-router.get('/login', async function(req, res){
+router.post('/login', async function(req, res){
 
   // comprobar que nos estan pasando los parametros...
   if (req.body.email != "" & req.body.email != ""){
