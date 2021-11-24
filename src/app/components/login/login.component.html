@@ -4,23 +4,31 @@
 
         <h1 class="subhearder">Login</h1>
 
-        <form class="mid-form" #registroForm="ngForm" (ngSubmit)="login()">
+        <form class="mid-form" #loginForm="ngForm" (ngSubmit)="entrada_principal()">
             
             <div class="form-group">
 
                 <label for="email">Correo electronico</label>
-                <input type="email" name="email" id="email" #email="ngModel" [(ngModel)]="entrada_usuario.email"required>
+                <input type="email" name="email" id="email" #email="ngModel" [(ngModel)]="login.email" required>
+
+                <small *ngIf="!email.valid && email.touched">
+                    Campo obligatorio
+                </small>
                 
             </div>
 
             <div class="form-group">
 
                 <label for="password">Contraseña</label>
-                <input type="password" name="password" id="password" #password1="ngModel" [(ngModel)]="entrada_usuario.password" required>
+                <input type="password" name="password" id="password" #password="ngModel" [(ngModel)]="login.password" required>
+
+                <small *ngIf="!password.valid && password.touched">
+                    Campo obligatorio
+                </small>
                 
             </div>
 
-            <input type="submit" value="Entar" class="btn" >
+            <input type="submit" value="Entar" class="btn" [disabled]="loginForm.invalid" >
 
         </form>
     </section>

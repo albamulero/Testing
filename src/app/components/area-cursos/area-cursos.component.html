@@ -1,0 +1,7 @@
+<h1>Cursos</h1>
+
+<div class="cursos-item" *ngFor="let curso of titulo_cursos">
+
+    <button id="{{curso.curso_title}}" (click) = "activarBoton($event)">{{curso.curso_title}}</button> 
+
+</div>

@@ -10,24 +10,24 @@ import { AppComponent } from './app.component';
 
 import { routing, appRoutingProviders } from './app.routing';
 
-import { AreaPrincipalComponent } from './components/area-principal/area-principal.component';
 import { AreaJavascriptComponent } from './components/area-javascript/area-javascript.component';
 import { AreaHtmlComponent } from './components/area-html/area-html.component';
 import { AreaCssComponent } from './components/area-css/area-css.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
+import { AreaCursosComponent } from './components/area-cursos/area-cursos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AreaPrincipalComponent,
     AreaJavascriptComponent,
     AreaHtmlComponent,
     AreaCssComponent,
     SliderComponent,
     RegistroComponent,
-    LoginComponent
+    LoginComponent,
+    AreaCursosComponent
   ],
   imports: [
     BrowserModule,

@@ -1,60 +1,51 @@
 import { Component, OnInit } from '@angular/core';
-import * as jQuery from 'jquery';
+import { Router } from '@angular/router';
+import { Login } from '../../models/login'
+import { LoginService } from '../../service/login.service'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
 
-  public entrada_usuario: any;
+  public url: string
 
-  constructor() { 
+  // Aqui guardaremos los datos del formulario
+  login = new Login('', '')
 
-    /* Sacamos los datos del formulario */
+  constructor(
 
-    this.entrada_usuario = {
+    private router:Router,
+    private _loginService:LoginService
 
-      email: '',
-      password: ''
-
-    }
-  }
+  ) { }
 
   ngOnInit(): void {
   }
 
-  login() {
+  entrada_principal() {
 
-    /* Creamos el data */
+    this._loginService.addLogin(this.login).subscribe(
 
-    const data = {
+      data => {
 
-      "email": `${this.entrada_usuario.email}`,
-      "password" : `${this.entrada_usuario.password}`
-      
-    }
+        console.log(data);
 
-    /* Hacemos la peticion ajax, para comprobar que el usaurio este en la DB */
+        if (data == false) {
 
-    jQuery.ajax({
+          alert("Contraseña incorrecta, vuelve a intentarlo")
 
-      url: 'http://localhost:3000/login',
-      data: data,
-      type: 'POST',
-      dataType:'json'
+        } else {
 
-    }).then(function (response) {
-                
-      console.log(response);
-                  
-    }).catch(function (err){
-              
-      console.log(err);
+          this.router.navigate(['area-cursos'])
+        }
 
-    })
-
+      }
+    )
   }
+
 }
 
