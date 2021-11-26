@@ -18,7 +18,7 @@ const Temas = require('../database/models/temas')
 */
 
 
-router.get('/anadir_temas', async function(req, res){
+router.post('/anadir_temas', async function(req, res){
 
       // Vamos a comprobar primero que nos llega la información
     if (req.body.posicion != "" & req.body.title != "" & req.body.descripcion != "" & req.body.id_curso != "") {
