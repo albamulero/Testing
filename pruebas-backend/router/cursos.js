@@ -50,7 +50,7 @@ router.get('/lista_cursos', async function(req, res){
 
 */
 
-router.get('/anadir_cursos', async function(req, res){
+router.post('/anadir_cursos', async function(req, res){
 
       // Vamos a comprobar primero que nos llega la información
     if (req.body.title != "" & req.body.descripcion != "") {
