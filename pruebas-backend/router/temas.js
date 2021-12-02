@@ -46,7 +46,7 @@ router.post('/anadir_temas', async function(req, res){
 
 
 
-router.get('/lista_temas', async function(req, res){
+router.post('/lista_temas', async function(req, res){
 
     let success = false
     let message = ''
