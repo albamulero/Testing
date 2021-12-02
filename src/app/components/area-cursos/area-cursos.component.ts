@@ -24,10 +24,10 @@ export class AreaCursosComponent implements OnInit {
     this._areaCursosService.getAreaCursos().subscribe(
 
       response => {
+        
+        if(response) {
 
-        if(response.data) {
-
-          this.titulo_cursos = response.data
+          this.titulo_cursos = response
           console.log(this.titulo_cursos);
           
         }

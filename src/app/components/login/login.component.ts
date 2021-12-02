@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
       data => {
 
-        console.log(data);
+        console.log("Data",data);
 
         if (data == false) {
 

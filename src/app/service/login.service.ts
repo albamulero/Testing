@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Login } from '../models/login'
 import { Global } from './global'
@@ -29,3 +29,18 @@ export class LoginService {
     }
 
 }
+/* let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('projectid', this.id);
+
+      this.http.get('http://localhost:63203/api/CallCenter/GetSupport', { headers: headers }) 
+
+--------------------------------------------
+
+let headers = new Headers()
+        headers.append('Content-Type', 'application/json')
+        headers.append('email', 'alba@gmail.com');
+        headers.append('password', '1234')
+        
+        return this._http.get(this.url + 'login', {headers})
+*/

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Registro } from '../../models/registro';
 import { RegistroService } from '../../service/registro.service'
 
@@ -17,7 +18,9 @@ export class RegistroComponent implements OnInit {
 
   constructor(
 
+    private router:Router,
     private _registroService: RegistroService
+    
 
   ) { }
 
@@ -39,6 +42,7 @@ export class RegistroComponent implements OnInit {
         data => {
 
           console.log(data);
+          this.router.navigate(['area-cursos'])
 
         }
       )
