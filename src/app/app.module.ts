@@ -18,6 +18,7 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
 import { AreaCursosComponent } from './components/area-cursos/area-cursos.component';
 import { AnyadirCursosComponent } from './components/anyadir-cursos/anyadir-cursos.component';
+import { AnyadirTemasComponent } from './components/anyadir-temas/anyadir-temas.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AnyadirCursosComponent } from './components/anyadir-cursos/anyadir-curs
     RegistroComponent,
     LoginComponent,
     AreaCursosComponent,
-    AnyadirCursosComponent
+    AnyadirCursosComponent,
+    AnyadirTemasComponent
   ],
   imports: [
     BrowserModule,
