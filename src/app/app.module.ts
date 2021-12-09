@@ -17,6 +17,7 @@ import { SliderComponent } from './components/slider/slider.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
 import { AreaCursosComponent } from './components/area-cursos/area-cursos.component';
+import { AnyadirCursosComponent } from './components/anyadir-cursos/anyadir-cursos.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AreaCursosComponent } from './components/area-cursos/area-cursos.compon
     SliderComponent,
     RegistroComponent,
     LoginComponent,
-    AreaCursosComponent
+    AreaCursosComponent,
+    AnyadirCursosComponent
   ],
   imports: [
     BrowserModule,
