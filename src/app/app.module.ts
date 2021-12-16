@@ -13,12 +13,12 @@ import { routing, appRoutingProviders } from './app.routing';
 import { AreaJavascriptComponent } from './components/area-javascript/area-javascript.component';
 import { AreaHtmlComponent } from './components/area-html/area-html.component';
 import { AreaCssComponent } from './components/area-css/area-css.component';
-import { SliderComponent } from './components/slider/slider.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
 import { AreaCursosComponent } from './components/area-cursos/area-cursos.component';
 import { AnyadirCursosComponent } from './components/anyadir-cursos/anyadir-cursos.component';
 import { AnyadirTemasComponent } from './components/anyadir-temas/anyadir-temas.component';
+import { AreaTemasComponent } from './components/area-temas/area-temas.component';
 
 @NgModule({
   declarations: [
@@ -26,12 +26,12 @@ import { AnyadirTemasComponent } from './components/anyadir-temas/anyadir-temas.
     AreaJavascriptComponent,
     AreaHtmlComponent,
     AreaCssComponent,
-    SliderComponent,
     RegistroComponent,
     LoginComponent,
     AreaCursosComponent,
     AnyadirCursosComponent,
-    AnyadirTemasComponent
+    AnyadirTemasComponent,
+    AreaTemasComponent
   ],
   imports: [
     BrowserModule,

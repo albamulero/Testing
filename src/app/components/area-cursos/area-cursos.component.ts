@@ -1,4 +1,4 @@
-import { APP_BOOTSTRAP_LISTENER, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AreaCursos } from '../../models/area-cursos'
 import { AreaCursosService } from '../../service/area-cursos.service'
 
@@ -42,6 +42,9 @@ export class AreaCursosComponent implements OnInit {
   }
 
   activarBoton(e){
+    
+    var curso = e.srcElement.id
+    console.log("Curso elegido:", curso);
     
     console.log(e.srcElement.id);
     

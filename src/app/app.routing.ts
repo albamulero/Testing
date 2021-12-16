@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router'
 // Importar componentes
 
 import { AreaCursosComponent } from '../app/components/area-cursos/area-cursos.component'
+import { AreaTemasComponent } from './components/area-temas/area-temas.component'
 import { AreaJavascriptComponent } from '../app/components/area-javascript/area-javascript.component'
 import { AreaHtmlComponent } from '../app/components/area-html/area-html.component'
 import { AreaCssComponent } from '../app/components/area-css/area-css.component'
@@ -20,6 +21,7 @@ import { AnyadirTemasComponent } from './components/anyadir-temas/anyadir-temas.
 const appRoutes: Routes = [
 
     { path: 'area-cursos', component: AreaCursosComponent },
+    { path: 'area-temas', component: AreaTemasComponent },
     { path: 'area-javascript', component: AreaJavascriptComponent },
     { path: 'area-html', component: AreaHtmlComponent },
     { path: 'area-css', component: AreaCssComponent },
