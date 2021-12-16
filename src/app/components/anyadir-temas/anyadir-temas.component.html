@@ -1,0 +1,58 @@
+<div class="center">
+
+    <section id="content">
+
+        <h1 class="subhearder">Añadir temas</h1>
+
+        <form class="mid-form" #anyadirTemasForm="ngForm" (ngSubmit)="anyadir_temas()" >
+            
+            <div class="form-group">
+
+                <div class="form-group">
+
+                    <label for="id_curso">Id curso</label>
+                    <input type="text" name="id_curso" id="id_curso" #id_curso="ngModel" [(ngModel)]="temas.id_curso" required>
+    
+                    <small *ngIf="!id_curso.valid && id_curso.touched">
+                        Campo obligatorio
+                    </small>
+                    
+                </div>
+
+                <label for="posicion">Posion</label>
+                <input type="text" name="posicion" id="posicion" #posicion="ngModel" [(ngModel)]="temas.posicion" required>
+
+                <small *ngIf="!posicion.valid && posicion.touched">
+                    Campo obligatorio
+                </small>
+                
+            </div>
+
+            <div class="form-group">
+
+                <label for="title">Titulo</label>
+                <input type="text" name="title" id="title" #title="ngModel" [(ngModel)]="temas.title" required>
+
+                <small *ngIf="!title.valid && title.touched">
+                    Campo obligatorio
+                </small>
+                
+            </div>
+
+            <div class="form-group">
+
+                <label for="descripcion">Descripcion</label>
+                <textarea name="descripcion" id="descripcion" cols="30" rows="10" #descripcion="ngModel" [(ngModel)]="temas.descripcion" required></textarea>
+
+                <small *ngIf="!descripcion.valid && descripcion.touched">
+                    Campo obligatorio
+                </small>
+                
+            </div>
+
+            <input type="submit" value="Entar" class="btn" [disabled]="anyadirTemasForm.invalid" >
+
+        </form>
+    </section>
+</div>
+

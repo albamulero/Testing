@@ -11,6 +11,8 @@ import { AreaHtmlComponent } from '../app/components/area-html/area-html.compone
 import { AreaCssComponent } from '../app/components/area-css/area-css.component'
 import { RegistroComponent } from './components/registro/registro.component'
 import { LoginComponent } from './components/login/login.component'
+import { AnyadirCursosComponent } from './components/anyadir-cursos/anyadir-cursos.component'
+import { AnyadirTemasComponent } from './components/anyadir-temas/anyadir-temas.component'
 
 
 // Array de rutas
@@ -22,7 +24,9 @@ const appRoutes: Routes = [
     { path: 'area-html', component: AreaHtmlComponent },
     { path: 'area-css', component: AreaCssComponent },
     { path: 'registro', component: RegistroComponent },
-    { path: 'login', component: LoginComponent }
+    { path: 'login', component: LoginComponent },
+    { path: 'anyadir-cursos', component: AnyadirCursosComponent },
+    { path: 'anyadir-temas', component: AnyadirTemasComponent}
 ]
 
 

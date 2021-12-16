@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Login } from '../models/login'
+import { anyadirTemas } from '../models/anyadir-temas'
 import { Global } from './global'
 
 @Injectable()
-export class LoginService {
+export class anyadirTemasService {
 
     public url: string
 
@@ -19,13 +19,13 @@ export class LoginService {
 
     }
 
-    addLogin(login:Login):Observable<any> {
+    addanyadirTemas(temas:anyadirTemas):Observable<any> {
 
         const headers = {'content-type':'application/json'}
-        const body = JSON.stringify(login)
-        console.log("Body: ", body);
+        const body = JSON.stringify(temas)
+        console.log("Body: ", body);  
         
-        return this._http.post(this.url + 'login', body, {'headers': headers})
+        return this._http.post(this.url + 'anadir_temas', body, {'headers': headers})
     }
 
 }
