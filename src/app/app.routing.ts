@@ -22,6 +22,7 @@ const appRoutes: Routes = [
 
     { path: 'area-cursos', component: AreaCursosComponent },
     { path: 'area-temas', component: AreaTemasComponent },
+    { path: 'area-temas/:id_curso', component: AreaTemasComponent },
     { path: 'area-javascript', component: AreaJavascriptComponent },
     { path: 'area-html', component: AreaHtmlComponent },
     { path: 'area-css', component: AreaCssComponent },
