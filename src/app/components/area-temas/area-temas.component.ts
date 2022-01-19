@@ -25,9 +25,6 @@ export class AreaTemasComponent implements OnInit {
 
   ngOnInit(): void {
     
-    console.log('Linea 27 inicia el ngOnInit');
-    
-
     this._route.params.subscribe((params:Params) => {
       console.log('Linea 31 recogemos el parametro', params);
       
@@ -53,6 +50,7 @@ export class AreaTemasComponent implements OnInit {
         
       }
     )
+    
 
   }
 
