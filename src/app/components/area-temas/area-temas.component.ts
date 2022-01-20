@@ -24,14 +24,13 @@ export class AreaTemasComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
     this._route.params.subscribe((params:Params) => {
-      console.log('Linea 31 recogemos el parametro', params);
       
       this.parametro = params.id_curso
-  
+      
     })
-    
+
     this._areaTemasService.getAreaTemas(this.parametro).subscribe(
       
       response => {
@@ -49,9 +48,28 @@ export class AreaTemasComponent implements OnInit {
         console.log('ERROR', err);
         
       }
-    )
-    
-
+    ) 
+  
   }
 
 }
+
+
+/*this._areaTemasService.getAreaTemas(this.parametro).subscribe(
+      
+      response => {
+
+        if(response) {
+
+          this.lista_temas = response
+          console.log('Linea 40', this.lista_temas);
+          
+        }
+      },
+
+      err => {
+
+        console.log('ERROR', err);
+        
+      }
+    ) */

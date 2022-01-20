@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Global } from './global';
 import { ActivatedRoute } from '@angular/router';
+import { AreaTemas } from '../models/area-temas';
 
 @Injectable()
 export class AreaTemasService {
@@ -20,11 +21,14 @@ export class AreaTemasService {
         
     }
 
-    getAreaTemas(id_curso:any): Observable<any> {
+    getAreaTemas(areaTemas:AreaTemas):Observable<any> {
 
-        console.log('getAreaTemas' + this.url + 'lista_temas' + '/' + id_curso);
-        return this._http.get(this.url + 'lista_temas')
-
+        const headers = {'content-type':'application/json'}
+        const body = JSON.stringify({"id_curso":areaTemas})
+        console.log("Body: ", body);
+        
+        return this._http.post(this.url + 'lista_temas', body, {'headers': headers})
+           
     }
 
     
